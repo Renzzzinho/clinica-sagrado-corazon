@@ -1,0 +1,116 @@
+.login-container {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.5),
+            rgba(0,0,0,0.5)
+        ),
+        url('https://www.atelierlima.com/wp-content/uploads/2022/04/standard_MINS2172_web.jpg');
+
+    background-size: cover;
+
+    background-position: center;
+
+    padding: 20px;
+}
+
+.login-card {
+
+    width: 1000px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    overflow: hidden;
+
+    backdrop-filter: blur(10px);
+
+    background: rgba(255,255,255,0.1);
+
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.login-image {
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.login-form {
+
+    backdrop-filter: blur(15px);
+
+    background: rgba(255,255,255,0.08);
+
+    min-height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.medical-icon {
+
+    font-size: 4rem;
+}
+
+.form-control {
+
+    border-radius: 12px !important;
+
+    border: none;
+
+    padding: 14px;
+}
+
+.form-control:focus {
+
+    box-shadow: 0 0 10px rgba(13,110,253,0.5);
+}
+
+.btn-login {
+
+    background: linear-gradient(135deg, #0d6efd, #0dcaf0);
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 14px;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.btn-login:hover {
+
+    transform: translateY(-2px);
+
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+
+    .login-card {
+
+        width: 100%;
+    }
+
+    .login-form {
+
+        padding: 30px !important;
+    }
+}

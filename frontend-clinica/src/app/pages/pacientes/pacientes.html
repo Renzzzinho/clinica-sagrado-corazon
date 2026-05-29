@@ -1,0 +1,215 @@
+<div class="container mt-5">
+
+    <h1 class="text-success mb-4">
+        Gestión de Pacientes
+    </h1>
+
+    <div class="card mb-4 shadow">
+
+        <div class="card-body">
+
+            <h3 class="mb-3">
+                Nuevo Paciente
+            </h3>
+
+            <div class="row g-3 align-items-end">
+                <div class="col-md-3">
+
+                    <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="nuevoPaciente.nombre" />
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <input type="text" class="form-control" placeholder="DNI" [(ngModel)]="nuevoPaciente.dni" />
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <input type="email" class="form-control" placeholder="Email" [(ngModel)]="nuevoPaciente.email" />
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <input type="text" class="form-control" placeholder="Teléfono"
+                        [(ngModel)]="nuevoPaciente.telefono" />
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <input type="date" class="form-control" [(ngModel)]="nuevoPaciente.fechaNacimiento" />
+
+                </div>
+
+                <div class="col-md-10">
+
+                    <input type="text" class="form-control" placeholder="Dirección"
+                        [(ngModel)]="nuevoPaciente.direccion" />
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <button class="btn btn-success w-100" (click)="crearPaciente()">
+                        Guardar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    @if (pacienteEditando) {
+
+    <div class="card mb-4 border-warning shadow">
+
+        <div class="card-body">
+
+            <h3 class="text-warning mb-3">
+                Editar Paciente
+            </h3>
+
+<div class="row g-3 align-items-end">
+                <div class="col-md-3">
+
+                    <input type="text" class="form-control" [(ngModel)]="pacienteEditando.nombre" />
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <input type="text" class="form-control" [(ngModel)]="pacienteEditando.dni" />
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <input type="email" class="form-control" [(ngModel)]="pacienteEditando.email" />
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <input type="text" class="form-control" [(ngModel)]="pacienteEditando.telefono" />
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <input type="date" class="form-control" [(ngModel)]="pacienteEditando.fechaNacimiento" />
+
+                </div>
+
+                <div class="col-md-10">
+
+                    <input type="text" class="form-control" [(ngModel)]="pacienteEditando.direccion" />
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <button class="btn btn-warning w-100" (click)="guardarEdicion()">
+                        Actualizar
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    }
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <input type="text" class="form-control" placeholder="Buscar paciente..." [(ngModel)]="busqueda" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>DNI</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Acciones</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @for (paciente of pacientesFiltrados; track paciente.id) {
+
+                <tr>
+
+                    <td>{{ paciente.id }}</td>
+
+                    <td>{{ paciente.nombre }}</td>
+
+                    <td>
+
+                        <span class="badge bg-dark">
+
+                            {{ paciente.dni }}
+
+                        </span>
+
+                    </td>
+
+                    <td>{{ paciente.email }}</td>
+
+                    <td>{{ paciente.telefono }}</td>
+
+                    <td>{{ paciente.direccion }}</td>
+
+                    <td>{{ paciente.fechaNacimiento }}</td>
+
+                    <td>
+
+                        <button class="btn btn-outline-warning btn-sm me-2" (click)="editarPaciente(paciente)">
+                            Editar
+                        </button>
+
+                        <button class="btn btn-outline-danger btn-sm" (click)="eliminarPaciente(paciente.id)">
+                            Eliminar
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+    </div>
+</div>

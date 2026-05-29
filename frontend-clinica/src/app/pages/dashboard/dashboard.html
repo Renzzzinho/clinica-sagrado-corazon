@@ -1,0 +1,186 @@
+<div class="container-fluid p-4">
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+
+        <div>
+
+            <h1 class="fw-bold text-primary mb-1">
+                Dashboard Administrativo
+            </h1>
+
+            <p class="text-muted mb-0">
+                Sistema de Gestión Clínica
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-12 col-sm-6 col-lg-3">
+
+            <div class="card dashboard-card bg-primary">
+
+                <div class="card-body">
+
+                    <h5>👨‍⚕️ Doctores</h5>
+
+                    <h2>{{ totalDoctores }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+
+            <div class="card dashboard-card bg-success">
+
+                <div class="card-body">
+
+                    <h5>🧑 Pacientes</h5>
+
+                    <h2>{{ totalPacientes }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+
+            <div class="card dashboard-card bg-dark">
+
+                <div class="card-body">
+
+                    <h5>📅 Citas</h5>
+
+                    <h2>{{ totalCitas }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+
+            <div class="card dashboard-card bg-warning">
+
+                <div class="card-body">
+
+                    <h5>✅ Atendidas</h5>
+
+                    <h2>{{ citasAtendidas }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-12 col-lg-6">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body">
+
+                    <h4 class="mb-4">
+                        Estado de Citas
+                    </h4>
+
+                    <div style="height: 350px;">
+
+                        <canvas id="graficoCitas"></canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-12 col-lg-6">
+
+            <div class="card shadow border-0 h-100">
+
+                <div class="card-body">
+
+                    <h4 class="mb-4">
+                        Resumen General
+                    </h4>
+
+                    <div class="mb-3">
+
+                        <h6>
+                            📅 Programadas
+                        </h6>
+
+                        <div class="progress">
+
+                            <div
+                                class="progress-bar bg-primary"
+                                [style.width.%]="
+                                    (citasProgramadas / totalCitas) * 100
+                                ">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <h6>
+                            ✅ Atendidas
+                        </h6>
+
+                        <div class="progress">
+
+                            <div
+                                class="progress-bar bg-success"
+                                [style.width.%]="
+                                    (citasAtendidas / totalCitas) * 100
+                                ">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <h6>
+                            ❌ Canceladas
+                        </h6>
+
+                        <div class="progress">
+
+                            <div
+                                class="progress-bar bg-danger"
+                                [style.width.%]="
+                                    (citasCanceladas / totalCitas) * 100
+                                ">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

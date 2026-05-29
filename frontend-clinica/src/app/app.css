@@ -1,0 +1,18 @@
+.main-content {
+  margin-left: 250px;
+
+  padding: 20px;
+}
+
+
+html,
+body {
+
+    overflow-x: hidden;
+}
+
+.container,
+.container-fluid {
+
+    max-width: 100%;
+}

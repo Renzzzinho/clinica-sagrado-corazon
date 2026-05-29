@@ -1,0 +1,210 @@
+<div class="container mt-5">
+
+    <h1 class="text-primary mb-4">
+        Gestión de Citas
+    </h1>
+
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+
+            <h3 class="mb-3">
+                Nueva Cita
+            </h3>
+
+            <div class="row g-3">
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Doctor
+                    </label>
+
+                    <select class="form-select" [(ngModel)]="nuevaCita.doctorId">
+
+                        <option value="">
+                            Seleccione doctor
+                        </option>
+
+                        @for (doctor of doctores; track doctor.id) {
+
+                        <option [value]="doctor.id">
+
+                            {{ doctor.nombre }}
+                            -
+                            {{ doctor.especialidad }}
+
+                        </option>
+                        }
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Paciente
+                    </label>
+
+                    <select class="form-select" [(ngModel)]="nuevaCita.pacienteId">
+
+                        <option value="">
+                            Seleccione paciente
+                        </option>
+
+                        @for (paciente of pacientes; track paciente.id) {
+
+                        <option [value]="paciente.id">
+
+                            {{ paciente.nombre }}
+
+                        </option>
+                        }
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Fecha y Hora
+                    </label>
+
+                    <input type="datetime-local" class="form-control" [(ngModel)]="nuevaCita.fechaInicio" />
+
+                </div>
+
+                <div class="col-md-12">
+
+                    <button class="btn btn-primary" (click)="crearCita()">
+                        Crear Cita
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+
+            <div class="row g-3 align-items-end">
+                <div class="col-md-4">
+
+                    <input type="text" class="form-control" placeholder="Buscar cita..." [(ngModel)]="busqueda" />
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle shadow">
+            <thead class="table-dark">
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Doctor</th>
+
+                    <th>Paciente</th>
+
+                    <th>Inicio</th>
+
+                    <th>Fin</th>
+
+                    <th>Estado</th>
+
+                    <th>Acciones</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                @for (cita of citasFiltradas; track cita.id) {
+
+                <tr>
+
+                    <td>{{ cita.id }}</td>
+
+                    <td>
+
+                        {{ cita.doctor.nombre }}
+
+                    </td>
+
+                    <td>
+
+                        {{ cita.paciente.nombre }}
+
+                    </td>
+
+                    <td>
+
+                        {{ cita.fechaInicio | date:'short' }}
+                    </td>
+
+                    <td>
+
+                        {{ cita.fechaFin | date:'short' }}
+                    </td>
+
+                    <td>
+
+                        <span class="badge" [ngClass]="{
+
+                'bg-primary':
+                  cita.estado === 'PROGRAMADA',
+
+                'bg-success':
+                  cita.estado === 'ATENDIDA',
+
+                'bg-danger':
+                  cita.estado === 'CANCELADA'
+              }">
+
+                            {{ cita.estado }}
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <button class="btn btn-outline-success btn-sm me-2" (click)="atenderCita(cita.id)" [disabled]="
+                cita.estado !== 'PROGRAMADA'
+              ">
+                            Atender
+                        </button>
+
+                        <button class="btn btn-outline-danger btn-sm" (click)="cancelarCita(cita.id)" [disabled]="
+                cita.estado !== 'PROGRAMADA'
+              ">
+                            Cancelar
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,78 @@
+<div class="login-container">
+
+    <div class="card login-card shadow-lg">
+
+        <div class="row g-0">
+
+            <div class="col-md-6 d-none d-md-block">
+
+                <img src="https://static.vecteezy.com/system/resources/previews/001/822/322/non_2x/cartoon-couple-doctors-waving-free-vector.jpg"
+                    class="img-fluid login-image" />
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="card-body p-5 login-form">
+
+                    <div class="text-center mb-4">
+
+                        <div class="medical-icon mb-3">
+
+                            🏥
+
+                        </div>
+
+                        <h2 class="fw-bold text-white">
+
+                            Clínica Sagrado Corazón
+
+                        </h2>
+
+                        <p class="text-light">
+
+                            Sistema de Gestión Médica
+
+                        </p>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label text-white">
+
+                            Correo Electrónico
+
+                        </label>
+
+                        <input type="email" class="form-control form-control-lg" placeholder="Ingrese su correo"
+                            [(ngModel)]="datos.email" />
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label text-white">
+
+                            Contraseña
+
+                        </label>
+
+                        <input type="password" class="form-control form-control-lg" placeholder="Ingrese su contraseña"
+                            [(ngModel)]="datos.password" />
+
+                    </div>
+
+                    <button class="btn btn-login btn-lg w-100" (click)="login()">
+                        Iniciar Sesión
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
