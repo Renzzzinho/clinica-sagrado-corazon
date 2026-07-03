@@ -1,0 +1,58 @@
+<div class="container mt-4">
+
+    <h2 class="mb-4">
+        Mis Citas
+    </h2>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-primary">
+
+            <tr>
+                <th>Doctor</th>
+                <th>Especialidad</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr *ngFor="let cita of citas">
+
+                <td>{{ cita.doctor.nombre }}</td>
+
+                <td>{{ cita.doctor.especialidad }}</td>
+
+                <td>{{ cita.fechaInicio | date:'dd/MM/yyyy HH:mm' }}</td>
+
+                <td>
+
+                    <span *ngIf="cita.estado == 'PROGRAMADA'" class="badge bg-warning text-dark">
+
+                        📅 Programada
+
+                    </span>
+
+                    <span *ngIf="cita.estado == 'ATENDIDA'" class="badge bg-success">
+
+                        ✔ Atendida
+
+                    </span>
+
+                    <span *ngIf="cita.estado == 'CANCELADA'" class="badge bg-danger">
+
+                        ✖ Cancelada
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</div>

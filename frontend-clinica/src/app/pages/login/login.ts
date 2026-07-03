@@ -50,21 +50,26 @@ export class Login {
         next: (response: any) => {
 
           this.authService.guardarToken(
-  response.token
+  response.token,
+  response.nombre,
+  response.rol
 );
 
-          Swal.fire({
+setTimeout(() => {
 
-            icon: 'success',
+  if (response.rol === 'ADMIN') {
 
-            title: 'Bienvenido',
+    this.router.navigate(['/dashboard']);
 
-            text: 'Login correcto'
-          });
+  } else if (response.rol === 'DOCTOR') {
 
-          setTimeout(() => {
+    this.router.navigate(['/doctor-home']);
 
-this.router.navigate(['/home']);
+  } else if (response.rol === 'PACIENTE') {
+
+    this.router.navigate(['/paciente-home']);
+
+  }
 
 }, 200);
         },

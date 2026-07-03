@@ -26,13 +26,12 @@ public class AuthService {
 
         Usuario usuario = usuarioRepository
                 .findByEmail(request.getEmail())
-
-                .orElseThrow(() ->
-                        new RuntimeException("Usuario no encontrado")
+                .orElseThrow(()
+                        -> new RuntimeException("Usuario no encontrado")
                 );
 
-        boolean passwordCorrecto =
-                passwordEncoder.matches(
+        boolean passwordCorrecto
+                = passwordEncoder.matches(
                         request.getPassword(),
                         usuario.getPassword()
                 );
@@ -44,11 +43,15 @@ public class AuthService {
             );
         }
 
-       String token =
-        jwtService.generarToken(
-                usuario
-        );
+        String token
+                = jwtService.generarToken(
+                        usuario
+                );
 
-        return new LoginResponse(token);
+        return new LoginResponse(token,
+                usuario.getEmail(),
+                usuario.getNombre(),
+                usuario.getRol().name());
+
     }
 }

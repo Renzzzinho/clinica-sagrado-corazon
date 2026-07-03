@@ -24,5 +24,8 @@ public class Doctor {
     
     private String telefono;
 
+    @Column(nullable = false)
+    private String password;
+
     // getters y setters
 }

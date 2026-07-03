@@ -1,16 +1,22 @@
 package com.clinica.backend.service;
 
-import com.clinica.backend.dto.CitaRequest;
-import com.clinica.backend.model.*;
-import com.clinica.backend.repository.*;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.transaction.Transactional;
+import com.clinica.backend.dto.CitaRequest;
+import com.clinica.backend.model.Cita;
+import com.clinica.backend.model.Doctor;
+import com.clinica.backend.model.EstadoCita;
+import com.clinica.backend.model.Paciente;
+import com.clinica.backend.repository.CitaRepository;
+import com.clinica.backend.repository.DoctorRepository;
+import com.clinica.backend.repository.PacienteRepository;
 
-import java.time.*;
-import java.util.List;
+import jakarta.transaction.Transactional;
 
 @Service
 public class CitaService {
@@ -116,5 +122,16 @@ public class CitaService {
         return citaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cita no encontrada"));
     }
+//metodo cada docor para sus cittas
+    public List<Cita> obtenerMisCitas(String email) {
 
+    return citaRepository.findByDoctorEmail(email);
+
+}
+//metodo cada paciete  sus citas
+public List<Cita> obtenerMisCitasPaciente(String email) {
+    
+    return citaRepository.findByPacienteEmail(email);
+
+}
 }

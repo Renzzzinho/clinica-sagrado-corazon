@@ -2,12 +2,21 @@ package com.clinica.backend.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.clinica.backend.dto.CitaRequest;
 import com.clinica.backend.model.Cita;
 import com.clinica.backend.service.CitaService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/citas")
@@ -35,6 +44,28 @@ public class CitaController {
     public List<Cita> listar() {
         return service.listar();
     }
+
+@GetMapping("/mis-citas-doctor")
+public List<Cita> obtenerMisCitas(Authentication authentication) {
+
+    User usuario =
+            (User) authentication.getPrincipal();
+
+    return service.obtenerMisCitas(
+            usuario.getUsername()
+    );
+}
+@GetMapping("/mis-citas-paciente")
+public List<Cita> obtenerMisCitasPaciente(Authentication authentication) {
+
+    User usuario =
+            (User) authentication.getPrincipal();
+
+    return service.obtenerMisCitasPaciente(
+            usuario.getUsername()
+    );
+}
+    
 
     @GetMapping("/{id}")
     public Cita buscarPorId(@PathVariable Long id) {

@@ -36,6 +36,8 @@ export class Pacientes implements OnInit {
     direccion: '',
 
     fechaNacimiento: '',
+
+    password: '',
   };
 
   pacienteEditando: any = null;
@@ -89,7 +91,8 @@ export class Pacientes implements OnInit {
       !this.nuevoPaciente.email ||
       !this.nuevoPaciente.telefono ||
       !this.nuevoPaciente.direccion ||
-      !this.nuevoPaciente.fechaNacimiento
+      !this.nuevoPaciente.fechaNacimiento||
+      !this.nuevoPaciente.password
     ) {
       Swal.fire({
         icon: 'warning',
@@ -148,6 +151,19 @@ if (this.nuevoPaciente.nombre.length < 3) {
 
   return;
 }
+if (this.nuevoPaciente.password.length < 6) {
+
+  Swal.fire({
+
+    icon: 'warning',
+
+    title: 'La contraseña debe tener al menos 6 caracteres',
+
+  });
+
+  return;
+
+}
 
 const fechaNacimiento = new Date(this.nuevoPaciente.fechaNacimiento);
 
@@ -191,6 +207,8 @@ if (fechaNacimiento > hoy) {
             direccion: '',
 
             fechaNacimiento: '',
+
+            password: '',
           };
         },
 

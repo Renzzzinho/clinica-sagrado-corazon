@@ -1,27 +1,27 @@
-package com.clinica.backend.controller;
+    package com.clinica.backend.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.web.bind.annotation.PostMapping;
+    import org.springframework.web.bind.annotation.RequestBody;
+    import org.springframework.web.bind.annotation.RequestMapping;
+    import org.springframework.web.bind.annotation.RestController;
 
-import com.clinica.backend.dto.LoginRequest;
-import com.clinica.backend.dto.LoginResponse;
-import com.clinica.backend.service.AuthService;
+    import com.clinica.backend.dto.LoginRequest;
+    import com.clinica.backend.dto.LoginResponse;
+    import com.clinica.backend.service.AuthService;
 
-@RestController
-@RequestMapping("/auth")
-public class AuthController {
+    @RestController
+    @RequestMapping("/auth")
+    public class AuthController {
 
-    @Autowired
-    private AuthService authService;
+        @Autowired
+        private AuthService authService;
 
-    @PostMapping("/login")
-    public LoginResponse login(
-            @RequestBody LoginRequest request
-    ) {
+        @PostMapping("/login")
+        public LoginResponse login(
+                @RequestBody LoginRequest request
+        ) {
 
-        return authService.login(request);
+            return authService.login(request);
+        }
     }
-}

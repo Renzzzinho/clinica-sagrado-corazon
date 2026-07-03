@@ -48,7 +48,7 @@ public class JwtService {
 
                         new Date(
                                 System.currentTimeMillis()
-                                        + 1000 * 60 * 5
+                                        + 1000 * 60 * 60
                         )
                 )
 

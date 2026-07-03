@@ -1,0 +1,123 @@
+<div class="container mt-4">
+
+    <h2 class="mb-4">
+
+        Bienvenido {{ nombre }}
+
+    </h2>
+
+    <div class="row text-center mb-4">
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h5>Total Citas</h5>
+
+                    <h2>{{ totalCitas }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h5>Programadas</h5>
+
+                    <h2>{{ citasProgramadas }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h5>Atendidas</h5>
+
+                    <h2>{{ citasAtendidas }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow">
+
+                <div class="card-body">
+
+                    <h5>Canceladas</h5>
+
+                    <h2>{{ citasCanceladas }}</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow">
+
+        <div class="card-header">
+
+            Mis Citas
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-striped">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Doctor</th>
+
+                        <th>Fecha</th>
+
+                        <th>Estado</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let cita of citas">
+
+                        <td>{{ cita.doctor.nombre }}</td>
+
+                        <td>{{ cita.fechaInicio | date:'dd/MM/yyyy HH:mm' }}</td>
+
+                        <td>{{ cita.estado }}</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>  

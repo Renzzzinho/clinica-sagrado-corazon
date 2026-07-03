@@ -64,6 +64,13 @@ public class SecurityConfig {
 )
 
 .hasRole("ADMIN")
+ // DOCTOR
+    .requestMatchers("/api/citas/mis-citas-doctor")
+    .hasRole("DOCTOR")
+
+    // PACIENTE
+    .requestMatchers("/api/citas/mis-citas-paciente")
+    .hasRole("PACIENTE")
 
 .requestMatchers(
         "/api/citas/**"

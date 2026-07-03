@@ -1,5 +1,13 @@
 package com.clinica.backend.service;
 
+
+//ulimos imports
+import com.clinica.backend.model.Usuario;
+import com.clinica.backend.model.Rol;
+import com.clinica.backend.repository.UsuarioRepository;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//aqui acaban los impors
 import com.clinica.backend.model.Doctor;
 import com.clinica.backend.repository.DoctorRepository;
 
@@ -14,9 +22,49 @@ public class DoctorService {
     @Autowired
     private DoctorRepository repository;
 
+
+    /*  probblemas
     public Doctor crear(Doctor doctor) {
         return repository.save(doctor);
-    }
+    }*/
+
+        public Doctor crear(Doctor doctor) {
+
+    Doctor doctorGuardado =
+            repository.save(doctor);
+
+    Usuario usuario =
+            new Usuario();
+
+    usuario.setNombre(
+            doctor.getNombre()
+    );
+
+    usuario.setEmail(
+            doctor.getEmail()
+    );
+
+    usuario.setPassword(
+            passwordEncoder.encode(
+                    doctor.getPassword()
+            )
+    );
+
+    usuario.setRol(
+            Rol.DOCTOR
+    );
+
+    usuarioRepository.save(
+            usuario
+    );
+
+    return doctorGuardado;
+}
+    @Autowired
+private UsuarioRepository usuarioRepository;
+
+@Autowired
+private BCryptPasswordEncoder passwordEncoder;
 
     public List<Doctor> listar() {
         return repository.findAll();

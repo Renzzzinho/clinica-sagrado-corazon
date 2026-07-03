@@ -34,6 +34,8 @@ export class Doctores implements OnInit {
     email: '',
 
     telefono: '',
+
+    password: '',
   };
 
   doctorEditando: any = null;
@@ -80,7 +82,8 @@ export class Doctores implements OnInit {
       !this.nuevoDoctor.nombre ||
       !this.nuevoDoctor.especialidad ||
       !this.nuevoDoctor.email ||
-      !this.nuevoDoctor.telefono
+      !this.nuevoDoctor.telefono ||
+      !this.nuevoDoctor.password
     ) {
       Swal.fire({
         icon: 'warning',
@@ -115,6 +118,17 @@ export class Doctores implements OnInit {
       return;
     }
 
+    if (this.nuevoDoctor.password.length < 6) {
+
+  Swal.fire({
+    icon: 'warning',
+    title: 'Contraseña muy corta',
+    text: 'Debe tener al menos 6 caracteres'
+  });
+
+  return;
+}
+
     if (this.nuevoDoctor.nombre.length < 3) {
       Swal.fire({
         icon: 'warning',
@@ -123,6 +137,7 @@ export class Doctores implements OnInit {
       });
 
       return;
+
     }
 
     this.doctorService
@@ -147,6 +162,8 @@ export class Doctores implements OnInit {
             email: '',
 
             telefono: '',
+
+            password: '',
           };
         },
 

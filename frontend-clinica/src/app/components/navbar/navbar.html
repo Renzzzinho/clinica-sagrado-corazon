@@ -3,51 +3,63 @@
     <div>
 
         <h3 class="logo">
-
-            Clínica Sagrado Corazon
-
+            Clínica Sagrado Corazón
         </h3>
 
         <ul class="menu">
 
             <li>
-
-                <a routerLink="/">
-
-                    🏠 Dashboard
-
+                <a [routerLink]="irDashboard()">
+                    🏠 {{ textoInicio() }}
                 </a>
-
             </li>
 
-            <li>
+            <!-- ADMIN -->
 
+            <li *ngIf="authService.esAdmin()">
                 <a routerLink="/doctores">
-
                     👨‍⚕️ Doctores
-
                 </a>
-
             </li>
 
-            <li>
-
+            <li *ngIf="authService.esAdmin()">
                 <a routerLink="/pacientes">
-
                     🧑 Pacientes
-
                 </a>
-
             </li>
 
-            <li>
-
+            <li *ngIf="authService.esAdmin()">
                 <a routerLink="/citas">
-
                     📅 Citas
-
                 </a>
+            </li>
 
+            <!-- DOCTOR -->
+
+            <li *ngIf="authService.esDoctor()">
+                <a routerLink="/doctor-citas">
+                    📅 Mis Citas
+                </a>
+            </li>
+
+            <li *ngIf="authService.esDoctor()">
+                <a routerLink="/doctor-perfil">
+                    👤 Mi Perfil
+                </a>
+            </li>
+
+            <!-- PACIENTE -->
+
+            <li *ngIf="authService.esPaciente()">
+                <a routerLink="/paciente-citas">
+                    📅 Mis Citas
+                </a>
+            </li>
+
+            <li *ngIf="authService.esPaciente()">
+                <a routerLink="/paciente-perfil">
+                    👤 Mi Perfil
+                </a>
             </li>
 
         </ul>

@@ -37,4 +37,23 @@ export class CitaService {
       {},
     );
   }
+
+
+
+  obtenerMisCitasPaciente() {
+
+  return this.http.get<any[]>(
+    `${this.API}/mis-citas-paciente`
+  );
+
+}
+
+
+obtenerMisCitasDoctor() {
+
+  return this.http.get<any[]>(
+    `${this.API}/mis-citas-doctor`
+  );
+
+}
 }
