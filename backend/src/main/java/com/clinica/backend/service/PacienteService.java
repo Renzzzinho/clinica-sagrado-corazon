@@ -135,7 +135,33 @@ public class PacienteService {
 
         return repository.save(paciente);
     }
+    //ultimo agregado para perfil
+    public Paciente buscarPorEmail(String email) {
 
+    return repository.findByEmail(email)
+            .orElseThrow(() ->
+                    new RuntimeException("Paciente no encontrado"));
+
+}
+//      
+//acrtualizar datos
+public Paciente actualizarMiPerfil(
+        String email,
+        Paciente datos) {
+
+    Paciente paciente = repository.findByEmail(email)
+            .orElseThrow(() ->
+                    new RuntimeException("Paciente no encontrado"));
+
+    paciente.setEmail(datos.getEmail());
+
+    paciente.setTelefono(datos.getTelefono());
+
+    paciente.setDireccion(datos.getDireccion());
+
+    return repository.save(paciente);
+
+}
     public void eliminar(Long id) {
 
         Paciente paciente

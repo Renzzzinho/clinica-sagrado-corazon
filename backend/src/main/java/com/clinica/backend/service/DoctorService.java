@@ -90,8 +90,33 @@ private BCryptPasswordEncoder passwordEncoder;
         Doctor doctor = obtenerPorId(id);
         repository.delete(doctor);
     }
+//acualizar mi perfil
+public Doctor actualizarMiPerfil(
+        String email,
+        Doctor datos) {
+
+    Doctor doctor = repository.findByEmail(email)
+            .orElseThrow(() ->
+                    new RuntimeException("Doctor no encontrado"));
+
+    doctor.setEmail(datos.getEmail());
+
+    doctor.setTelefono(datos.getTelefono());
+
+    return repository.save(doctor);
+
+}
+//
 
     public List<Doctor> buscarPorEspecialidad(String especialidad) {
         return repository.findByEspecialidad(especialidad);
     }
+    //ultimo agregado
+    public Doctor buscarPorEmail(String email) {
+
+    return repository.findByEmail(email)
+            .orElseThrow(() ->
+                    new RuntimeException("Doctor no encontrado"));
+    //
+}
 }

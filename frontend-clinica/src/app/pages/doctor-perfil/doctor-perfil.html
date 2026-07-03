@@ -1,11 +1,77 @@
 <div class="container mt-4">
 
-    <h2>
+    <h2 class="mb-4">
         Mi Perfil
     </h2>
 
-    <p>
-        Aquí el doctor podrá actualizar sus datos.
-    </p>
+    <div class="card shadow">
 
-</div>
+        <div class="card-body">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Nombre
+                </label>
+
+                <input type="text" class="form-control" [value]="doctor.nombre" disabled>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Especialidad
+                </label>
+
+                <input type="text" class="form-control" [value]="doctor.especialidad" disabled>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Email
+                </label>
+
+                <input type="email" class="form-control" [(ngModel)]="doctor.email" [disabled]="!editando">
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Teléfono
+                </label>
+
+                <input type="text" class="form-control" [(ngModel)]="doctor.telefono" [disabled]="!editando">
+
+            </div>
+
+            <div class="mt-4">
+
+                <button *ngIf="!editando" class="btn btn-primary" (click)="editar()">
+
+                    ✏️ Editar perfil
+
+                </button>
+
+                <button *ngIf="editando" class="btn btn-success me-2" (click)="guardar()">
+
+                    💾 Guardar
+
+                </button>
+
+                <button *ngIf="editando" class="btn btn-secondary" (click)="cancelar()">
+
+                    Cancelar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>  

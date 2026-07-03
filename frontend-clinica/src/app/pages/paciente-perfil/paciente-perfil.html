@@ -1,11 +1,97 @@
 <div class="container mt-4">
 
-    <h2>
+    <h2 class="mb-4">
         Mi Perfil
     </h2>
 
-    <p>
-        Aquí el paciente podrá actualizar sus datos.
-    </p>
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Nombre
+                </label>
+
+                <input type="text" class="form-control" [value]="paciente.nombre" disabled>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    DNI
+                </label>
+
+                <input type="text" class="form-control" [value]="paciente.dni" disabled>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Fecha de nacimiento
+                </label>
+
+                <input type="text" class="form-control" [value]="paciente.fechaNacimiento | date:'dd/MM/yyyy'" disabled>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Email
+                </label>
+
+                <input type="email" class="form-control" [(ngModel)]="paciente.email" [disabled]="!editando">
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Teléfono
+                </label>
+
+                <input type="text" class="form-control" [(ngModel)]="paciente.telefono" [disabled]="!editando">
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Dirección
+                </label>
+
+                <input type="text" class="form-control" [(ngModel)]="paciente.direccion" [disabled]="!editando">
+
+            </div>
+
+            <div class="mt-4">
+
+                <button *ngIf="!editando" class="btn btn-primary" (click)="editar()">
+
+                    ✏️ Editar perfil
+
+                </button>
+
+                <button *ngIf="editando" class="btn btn-success me-2" (click)="guardar()">
+
+                    💾 Guardar
+
+                </button>
+
+                <button *ngIf="editando" class="btn btn-secondary" (click)="cancelar()">
+
+                    Cancelar
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>

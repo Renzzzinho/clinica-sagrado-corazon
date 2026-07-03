@@ -5,7 +5,8 @@ import com.clinica.backend.service.DoctorService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 
 import java.util.List;
 
@@ -25,7 +26,36 @@ public class DoctorController {
     public List<Doctor> listar() {
         return service.listar();
     }
+//ultimo agrregado
+    @GetMapping("/mi-perfil")
+public Doctor miPerfil(Authentication authentication) {
 
+    User usuario =
+            (User) authentication.getPrincipal();
+
+    return service.buscarPorEmail(
+            usuario.getUsername()
+    );
+
+}
+//
+
+//acualizar datos
+@PutMapping("/mi-perfil")
+public Doctor actualizarMiPerfil(
+        Authentication authentication,
+        @RequestBody Doctor datos) {
+
+    User usuario =
+            (User) authentication.getPrincipal();
+
+    return service.actualizarMiPerfil(
+            usuario.getUsername(),
+            datos
+    );
+
+}
+//
     @GetMapping("/{id}")
     public Doctor obtener(@PathVariable Long id) {
         return service.obtenerPorId(id);

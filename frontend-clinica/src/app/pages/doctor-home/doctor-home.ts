@@ -20,6 +20,8 @@ export class DoctorHome implements OnInit {
 
   citasAtendidas = 0;
 
+  citasCanceladas = 0;
+
   constructor(
     private authService: AuthService,
     private citaService: CitaService,
@@ -32,15 +34,24 @@ export class DoctorHome implements OnInit {
   }
 
   cargarResumen() {
-    this.citaService.obtenerCitas().subscribe({
-      next: (citas: any) => {
-        this.totalCitas = citas.length;
+    this.citaService
 
-        this.citasProgramadas = citas.filter((c:any) => c.estado === 'PROGRAMADA').length;
+      .obtenerMisCitasDoctor()
 
-        this.citasAtendidas = citas.filter((c:any) => c.estado === 'ATENDIDA').length;
-      },
-    });
+      .subscribe({
+        next: (citas: any[]) => {
+          this.totalCitas = citas.length;
+
+          this.citasProgramadas = citas.filter((c: any) => c.estado === 'PROGRAMADA').length;
+
+          this.citasAtendidas = citas.filter((c: any) => c.estado === 'ATENDIDA').length;
+          this.citasCanceladas = citas.filter((c: any) => c.estado === 'CANCELADA').length;
+        },
+
+        error: (error) => {
+          console.error(error);
+        },
+      });
   }
 }
 

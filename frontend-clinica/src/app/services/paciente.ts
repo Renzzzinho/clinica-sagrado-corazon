@@ -37,6 +37,26 @@ export class PacienteService {
     );
   }
 
+  obtenerMiPerfil() {
+
+  return this.http.get<any>(
+    `${this.API}/mi-perfil`
+  );
+
+}
+
+actualizarMiPerfil(paciente: any) {
+
+  return this.http.put(
+
+    `${this.API}/mi-perfil`,
+
+    paciente
+
+  );
+
+}
+
   actualizarPaciente(
     id: number,
     paciente: any

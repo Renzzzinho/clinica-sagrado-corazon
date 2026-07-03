@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 
 import com.clinica.backend.model.Paciente;
 import com.clinica.backend.service.PacienteService;
@@ -33,11 +35,39 @@ public class PacienteController {
     public List<Paciente> listar() {
         return service.listar();
     }
+    //ultimo agregado
+    @GetMapping("/mi-perfil")
+public Paciente miPerfil(Authentication authentication) {
 
+    User usuario =
+            (User) authentication.getPrincipal();
+
+    return service.buscarPorEmail(
+            usuario.getUsername()
+    );
+//
+}
+//actualizar darots
+@PutMapping("/mi-perfil")
+public Paciente actualizarMiPerfil(
+        Authentication authentication,
+        @RequestBody Paciente datos) {
+
+    User usuario =
+            (User) authentication.getPrincipal();
+
+    return service.actualizarMiPerfil(
+            usuario.getUsername(),
+            datos
+    );
+
+}
+    
     @GetMapping("/{id}")
     public Paciente obtener(@PathVariable Long id) {
         return service.obtenerPorId(id);
     }
+
 
     @PutMapping("/{id}")
     public Paciente actualizar(@PathVariable Long id, @RequestBody Paciente paciente) {

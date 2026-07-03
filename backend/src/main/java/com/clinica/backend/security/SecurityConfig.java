@@ -52,6 +52,12 @@ public class SecurityConfig {
                     )
 
                     .permitAll()
+                    //perfil pacient
+                    .requestMatchers("/api/doctores/mi-perfil")
+.hasRole("DOCTOR")
+//perfil docttor
+.requestMatchers("/api/pacientes/mi-perfil")
+.hasRole("PACIENTE") 
 
                     .requestMatchers(
         "/api/doctores/**"

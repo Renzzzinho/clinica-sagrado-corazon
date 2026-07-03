@@ -34,6 +34,26 @@ export class DoctorService {
   );
 }
 
+//para el aparttado doctor
+obtenerMiPerfil() {
+
+  return this.http.get<any>(
+    `${this.API}/mi-perfil`
+  );
+
+}
+actualizarMiPerfil(doctor: any) {
+
+  return this.http.put(
+
+    `${this.API}/mi-perfil`,
+
+    doctor
+
+  );
+
+}
+//
 actualizarDoctor(
   id: number,
   doctor: any
@@ -46,4 +66,7 @@ actualizarDoctor(
     doctor
   );
 }
+
+
+
 }
