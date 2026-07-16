@@ -17,7 +17,7 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
 
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173",
+                        .allowedOrigins("http://localhost:5173","http://localhost:4200",
                                     "https://clinica-sagrado-corazon-sigma.vercel.app"
 
                         )
@@ -25,4 +25,4 @@ public class CorsConfig {
             }
         };
     }
-}
+}   
