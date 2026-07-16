@@ -211,7 +211,7 @@ if (fechaNacimiento > hoy) {
             password: '',
           };
         },
-
+        
         error: () => {
           Swal.fire({
             icon: 'error',
