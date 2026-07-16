@@ -4,11 +4,13 @@ import { HttpClient } from '@angular/common/http';
 
 import { Router } from '@angular/router';
 
+import { environment } from '../../environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private API = 'http://localhost:8080/auth';
+  private API = `${environment.apiUrl}/auth`;
 
   private timeoutId: any;
 
