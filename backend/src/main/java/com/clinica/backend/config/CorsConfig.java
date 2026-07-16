@@ -1,3 +1,4 @@
+/*
 package com.clinica.backend.config;
 
 import org.springframework.context.annotation.Bean;
@@ -26,3 +27,6 @@ public class CorsConfig {
         };
     }
 }   
+    
+    
+*/
