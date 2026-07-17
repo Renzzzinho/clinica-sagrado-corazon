@@ -79,7 +79,8 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource(
-            @Value("${app.cors.allowed-origin-patterns}") String allowedOriginPatterns
+            @Value("${app.cors.allowed-origin-patterns:https://clinica-sagrado-corazon-sigma.vercel.app,http://localhost:4200}") 
+String allowedOriginPatterns
     ) {
         List<String> origins = Arrays.stream(allowedOriginPatterns.split(","))
                 .map(String::trim)

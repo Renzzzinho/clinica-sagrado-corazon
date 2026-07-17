@@ -23,6 +23,12 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Autowired
     private JwtService jwtService;
 
+
+    @Override
+protected boolean shouldNotFilter(HttpServletRequest request) {
+    return "OPTIONS".equalsIgnoreCase(request.getMethod())
+            || request.getRequestURI().startsWith("/auth/");
+}
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
